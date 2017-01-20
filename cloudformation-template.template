@@ -1,5 +1,6 @@
 {
   
-  "AWSTemplateFormatVersion": "2010-09-09"
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "AWS Cloudformation template developed as a product of the AWS Service catalog. The product is an Elastic Beanstalk Docker Application"
   
 }
