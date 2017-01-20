@@ -1,6 +1,75 @@
 {
-  
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "AWS Cloudformation template developed as a product of the AWS Service catalog. The product is an Elastic Beanstalk Docker Application"
-  
+  "Description": "AWS Cloudformation template developed as a product of the AWS Service catalog. The product is an Elastic Beanstalk Docker Application",
+  "Resources": {
+    "phpApplication": {
+      "Type": "AWS::ElasticBeanstalk::Application",
+      "Properties": {
+        "Description": "AWS Elastic Beanstalk Sample Application"
+      }
+    },
+    "phpApplicationVersion": {
+      "Type": "AWS::ElasticBeanstalk::ApplicationVersion",
+      "Properties": {
+        "ApplicationName": { "Ref": "phpApplication" },
+        "Description": "###########Reference provided application description here#########################",
+        "SourceBundle": {
+          "S3Bucket": { "Fn::Join": [ "-", [ "elasticbeanstalk-samples", { "Ref": "AWS::Region" } ] ] },
+          "S3Key": "docker-sample.zip"
+        }
+      }
+    },
+    "environmentConfigurationTemplate": {
+      "Type": "AWS::ElasticBeanstalk::ConfigurationTemplate",
+      "Properties": {
+        "ApplicationName": { "Ref": "phpApplication" },
+        "Description": "###########Reference to be provided##############",
+        "OptionSettings": [
+          {
+            "Namespace": "aws:autoscaling:asg",
+            "OptionName": "MinSize",
+            "Value": "2"
+          },
+          {
+            "Namespace": "aws:autoscaling:asg",
+            "OptionName": "MaxSize",
+            "Value": "6"
+          },
+          {
+            "Namespace": "aws:elasticbeanstalk:environment",
+            "OptionName": "EnvironmentType",
+            "Value": "LoadBalanced"
+          }
+        ],
+        "SolutionStackName": "64bit Amazon Linux running PHP 5.3"
+      }
+    },
+    "devEnvironment": {
+      "Type": "AWS::ElasticBeanstalk::Environment",
+      "Properties": {
+        "ApplicationName": { "Ref": "phpApplication" },
+        "Description": "AWS ElasticBeanstalk Sample Environment",
+        "TemplateName": { "Ref": "environmentConfigurationTemplate" },
+        "VersionLabel": { "Ref": "phpApplicationVersion" }
+      }
+    },
+    "stagEnvironment": {
+      "Type": "AWS::ElasticBeanstalk::Environment",
+      "Properties": {
+        "ApplicationName": { "Ref": "phpApplication" },
+        "Description": "AWS ElasticBeanstalk Sample Environment",
+        "TemplateName": { "Ref": "environmentConfigurationTemplate" },
+        "VersionLabel": { "Ref": "phpApplicationVersion" }
+      }
+    },
+    "prodEnvironment": {
+      "Type": "AWS::ElasticBeanstalk::Environment",
+      "Properties": {
+        "ApplicationName": { "Ref": "phpApplication" },
+        "Description": "AWS ElasticBeanstalk Sample Environment",
+        "TemplateName": { "Ref": "environmentConfigurationTemplate" },
+        "VersionLabel": { "Ref": "phpApplicationVersion" }
+      }
+    }
+  }
 }
