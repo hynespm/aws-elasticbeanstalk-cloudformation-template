@@ -4,7 +4,7 @@
 
 ##Introduction
 
-This repository contains a cloudformation template for the creation of a simple Elastic Beanstalk application with two environments (prod and dev). The template contains a list of platforms supported by Elastic Beanstalk at the date of writing
+This repository contains a cloudformation template for the creation of a simple Elastic Beanstalk application with two environments (prod and dev). The template contains a list of platforms supported by Elastic Beanstalk at the date of writing. The purpose of the template is to get people started with the creation of their own.
 
 
 ## Feedback
