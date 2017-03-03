@@ -1,8 +1,15 @@
-# AWS Cloudformation Template for the deployment of a HA Elasticbeanstalk Application with a single environment which supports Docker
+## Description : Cloudformation template for creating an Elastic Beanstalk Application and two highly available environments
 
-## Description : Template to create a Elastic Beanstalk application and single environment tailored for the Docker platform
+## Author : Patrick Hynes
 
-##@Author : Patrick Hynes
+##Introduction
 
-##@Contact : hynespm@gmail.com
+This repository contains a cloudformation template for the creation of a simple Elastic Beanstalk application with two environments (prod and dev). The template contains a list of platforms supported by Elastic Beanstalk at the date of writing
 
+
+## Feedback
+
+If you wish to contact me with feedback, please contact via email or skype
+
+* @email: hynespm@gmail.com
+* Skype: hynespm
